@@ -1,0 +1,13 @@
+{
+  "hosting": {
+    "public": "dist",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites":[
+      {"source":"/episode.html","destination":"/episode.html"}
+    ]
+  }
+}

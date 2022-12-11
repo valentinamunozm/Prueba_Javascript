@@ -1,6 +1,7 @@
 import './scss/styles.scss';
 import { apiCharacters, apiShowDetailCharacter } from './service/services';
 
+/** Función que renderiza las cards con los personajes*/
 async function showCard() {
 
     let infoCharacter = await apiCharacters();
@@ -17,11 +18,11 @@ async function showCard() {
             </div>
         </div>
         `
-
+        /**Muestra un offcanvas con información de los personajes */
         cardItem.addEventListener("mouseenter", function (event) {
             event.onclick = showDetailCharacter(item.id);
-        })
-
+        });
+        /** Hover sobre las cards */
         cardItem.addEventListener("mouseover", function( event ) {
             event.target.style.transform = `scale(1.009)`;
             setTimeout(function() {
@@ -31,9 +32,8 @@ async function showCard() {
 
         main.appendChild(cardItem);
     })
-
 }
-
+/** Función que muestra el detalle del personaje */
 async function showDetailCharacter(itemId) {
 
     let infoCharacter = await apiShowDetailCharacter(itemId);
@@ -49,13 +49,15 @@ async function showDetailCharacter(itemId) {
         <p>${infoCharacter.status} - ${infoCharacter.species}</p>
         <p><strong> Género:</strong> ${infoCharacter.gender}</p>
         `
+    /** Renderiza todos los episodios de la info del personaje y muestra el nombre de cada uno */
     totalEpisodes.forEach(async (item) => {    
         let apiEpisodes = await fetch(`${item}`);
         let data = await apiEpisodes.json();
        
         let ol = document.querySelector('ol') 
+        /**Guarda en localstorage el id del episodio */
         totalNameEpisode.push( `<li>
-            <a href="/dist/episode.html" onclick = 'localStorage.setItem("idUrl", ${data.id})'; 
+            <a href="episode.html" onclick = 'localStorage.setItem("idUrl", ${data.id})'; 
                 style="text-decoration: underline; color: blue; cursor:pointer;">${data.name}
             </a></li>`
         )

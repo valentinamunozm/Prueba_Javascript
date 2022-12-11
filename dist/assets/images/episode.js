@@ -1,5 +1,6 @@
 const urlEpisode="https://rickandmortyapi.com/api/episode";
 
+/**Función que permite traer la información del episodio seleccionado */
 async function apiShowDetailEpisode() {
 
     let idUrl = localStorage.getItem('idUrl');
@@ -10,7 +11,7 @@ async function apiShowDetailEpisode() {
     
     return informationEpisode;
 }
-
+/** Función que muestra una card con la información del episodio */
 async function showEpisode() {
 
     let infoEpisode = await apiShowDetailEpisode();
@@ -18,7 +19,7 @@ async function showEpisode() {
 
     let cardItem = document.createElement('div')
     cardItem.innerHTML = ` 
-    <div class="card text-dark bg-light mb-3" style="border-radius: 0.5em; ">
+    <div class="card text-white bg-secondary mb-3" style="border-radius: 0.5em; ">
         <div class="card-header text-center"><strong>${infoEpisode.name}</strong></div>
         <div id="card-body" class="card-body">
             <p><strong>Episodio:</strong> ${infoEpisode.episode} </p>
@@ -28,7 +29,7 @@ async function showEpisode() {
     `
     main.appendChild(cardItem);
 }
-
+/** Función que renderiza los personajes del episodio y muestra el nombre de cada episodio */
 async function showCharacters() {
 
     let infoEpisode = await apiShowDetailEpisode();
@@ -38,7 +39,7 @@ async function showCharacters() {
     let spanItem = document.createElement('span')
     spanItem.innerHTML = `
         <span><strong>Personajes:</strong> 
-            <ol style="height: 150px; max-height: 50%; overflow: auto; margin:3%; background: #ffff;"> </ol>
+            <ol style="height: 150px; max-height: 50%; overflow: auto; margin-top:3%; background: #808B96;"> </ol>
         </span>
     `
     main.appendChild(spanItem);
