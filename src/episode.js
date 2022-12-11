@@ -5,9 +5,7 @@ async function apiShowDetailEpisode() {
 
     let idUrl = localStorage.getItem('idUrl');
     let api = await fetch(`${urlEpisode}/${idUrl}`);
-    let informationEpisode = await api.json();
-   
-    console.log('Información del episodio', informationEpisode); 
+    let informationEpisode = await api.json(); 
     
     return informationEpisode;
 }
@@ -43,7 +41,7 @@ async function showCharacters() {
         </span>
     `
     main.appendChild(spanItem);
-
+    /** Renderiza todos los personajes del episodio y muestra el nombre de cada uno */
     totalCharacters.forEach(async (item) => {    
         let apiCharacters = await fetch(`${item}`);
         let data = await apiCharacters.json();

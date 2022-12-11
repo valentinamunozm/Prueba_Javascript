@@ -6,7 +6,7 @@ async function showCard() {
 
     let infoCharacter = await apiCharacters();
     let main = document.querySelector('#main');
-
+    
     infoCharacter.forEach(item => {
         let cardItem = document.createElement('div')
         cardItem.innerHTML = ` 
@@ -18,7 +18,7 @@ async function showCard() {
             </div>
         </div>
         `
-        /**Muestra un offcanvas con información de los personajes */
+        /**Muestra un offcanvas con información del personaje seleccionado */
         cardItem.addEventListener("mouseenter", function (event) {
             event.onclick = showDetailCharacter(item.id);
         });
@@ -29,13 +29,14 @@ async function showCard() {
                 event.target.style.transform = "";
             }, 500);
         });
-
-        main.appendChild(cardItem);
+        /** Agrega cada card al elemento main */
+        main?.appendChild(cardItem);
     })
 }
+
 /** Función que muestra el detalle del personaje */
 async function showDetailCharacter(itemId) {
-
+    /** infoCharacter representa la información del personaje traido de la api*/
     let infoCharacter = await apiShowDetailCharacter(itemId);
     let totalEpisodes = infoCharacter.episode;
     let totalNameEpisode = [];
@@ -61,6 +62,7 @@ async function showDetailCharacter(itemId) {
                 style="text-decoration: underline; color: blue; cursor:pointer;">${data.name}
             </a></li>`
         )
+        /** Renderiza la lista de los nombres de los episodios */
         ol.innerHTML = totalNameEpisode.join('');
     });
 }

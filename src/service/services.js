@@ -1,15 +1,16 @@
 const urlCharacter="https://rickandmortyapi.com/api/character";
 const urlEpisode="https://rickandmortyapi.com/api/episode";
 
+/** Función que retorna la información de todos los personajes */
 export async function apiCharacters() {
     
     let api = await fetch(urlCharacter);
-    let character = await api.json(); 
-    let informationCharacter = character.results;
-
+    let characters = await api.json(); 
+    let informationCharacter = characters.results;
+   
     return informationCharacter; 
 }
-
+/** Función que retorna la información de un personaje */
 export async function apiShowDetailCharacter(itemId) {
 
     let id = itemId;
@@ -21,7 +22,7 @@ export async function apiShowDetailCharacter(itemId) {
     
     return character;
 }
-
+/** Función que retorna la información del episodio */
 export async function apiShowDetailEpisode() {
 
     let idUrl = localStorage.getItem('idUrl');
